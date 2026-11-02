@@ -6,7 +6,6 @@ export const makeplayUrl = 'https://makeplayai.net/nn/'
 
 export const hubLinks = {
   service: `${makeplayUrl}intro/service`,
-  background: `${makeplayUrl}philosophy/background`,
   methods: `${makeplayUrl}philosophy/methods`,
   tryAI: `${makeplayUrl}try/makeplayai`,
   trySW: `${makeplayUrl}try/makeplaysw`,
@@ -46,28 +45,6 @@ export const tools = [
     role: '언제든 묻는 대화형 도우미',
     text: '모델 학습이나 서비스 구현 중 막히는 부분을 바로 질문할 수 있습니다. 개념 설명부터 오류 해결까지 학습 흐름을 끊지 않고 도움을 받습니다.',
   },
-]
-
-export const problems = [
-  {
-    title: '벌어지는 AI 활용 격차',
-    text: '디지털 역량을 넘어 AI를 활용하는 능력의 차이가 빠르게 커지고 있고, 접근 기회의 차이가 곧 역량의 차이가 되고 있습니다.',
-  },
-  {
-    title: '수동적인 AI 의존 학습',
-    text: 'AI가 내놓은 해결 방법을 그대로 따라 하거나 답을 복사하는 학습으로는 문제를 스스로 해결하는 힘을 기르기 어렵습니다.',
-  },
-  {
-    title: '주체적·윤리적 활용 역량의 부재',
-    text: 'AI를 쓰는 데 그치지 않고, 결과를 비판적으로 검토하며 AI를 통제하고 다루는 역량이 필요합니다.',
-  },
-]
-
-export const competencies = [
-  { title: '자기주도 역량', text: '관심 분야를 스스로 탐색하고 문제를 정의하는 힘' },
-  { title: 'AI 주체적 활용', text: 'AI를 따라 하는 대신 도구로 설계하는 역량' },
-  { title: '윤리적 AI 통제', text: 'AI의 결과를 비판적으로 검토하고 바르게 쓰는 판단력' },
-  { title: '창의적 문제 해결', text: 'AI와 함께 새로운 방식으로 문제에 접근하는 사고력' },
 ]
 
 export const methodSteps = [

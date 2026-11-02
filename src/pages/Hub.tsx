@@ -6,7 +6,6 @@ import ShowcaseCarousel from '../components/ShowcaseCarousel'
 import { asset } from '../data/site'
 import {
   audiences,
-  competencies,
   experiences,
   goals,
   hubLinks,
@@ -14,7 +13,6 @@ import {
   makeplayUrl,
   methodSteps,
   partners,
-  problems,
   projectFlow,
   tools,
 } from '../data/hub'
@@ -103,48 +101,6 @@ export default function Hub() {
                 </div>
               </article>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 배경 */}
-      <section className="section">
-        <div className="container">
-          <AccentBar />
-          <h2 className="section-title">왜 지금 필요한가요?</h2>
-          <p className="section-lead">
-            AI 시대에 학생들이 관심 분야와 재능을 스스로 찾고 창의적으로 문제를 해결하려면 자기주도 역량과 AI 역량이 함께
-            자라야 합니다. 초등학생부터 교사까지, 기술의 장벽 없이 AI를 도구로 다루는 새로운 교육이 필요합니다.
-          </p>
-          <div className="problem-grid">
-            {problems.map((p, i) => (
-              <article key={p.title} className="problem-card">
-                <span className="problem-no">0{i + 1}</span>
-                <h3>{p.title}</h3>
-                <p>{p.text}</p>
-              </article>
-            ))}
-          </div>
-
-          <h3 className="sub-title">길러야 할 역량</h3>
-          <div className="competency-grid">
-            {competencies.map((c) => (
-              <div key={c.title} className="competency">
-                <strong>{c.title}</strong>
-                <span>{c.text}</span>
-              </div>
-            ))}
-          </div>
-
-          <blockquote className="mission">
-            모든 학습자가 AI를 주체적으로 통제하고 활용하는 역량을 갖추어,
-            <br />
-            스스로 관심 분야를 탐색하고 문제를 해결할 수 있는 세상을 만듭니다.
-          </blockquote>
-          <div className="text-center-link">
-            <ExternalLink href={hubLinks.background} className="more-link">
-              배경 및 목표 자세히 보기 ↗
-            </ExternalLink>
           </div>
         </div>
       </section>
