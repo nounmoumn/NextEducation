@@ -1,7 +1,7 @@
 import PageHero from '../components/PageHero'
 import AccentBar from '../components/AccentBar'
-import { asset } from '../data/site'
-import { history } from '../data/about'
+import PhotoSlider from '../components/PhotoSlider'
+import { directorPhotos, history } from '../data/about'
 
 export default function About() {
   return (
@@ -9,9 +9,7 @@ export default function About() {
       <PageHero title="Head Researcher's Welcome" variant="slate" />
 
       <section className="greeting">
-        <div className="greeting-photo">
-          <img src={asset('images/site/director.jpg')} alt="이사장 권대용" />
-        </div>
+        <PhotoSlider className="greeting-photo" photos={directorPhotos} />
         <div className="greeting-text">
           <p className="greeting-role">이사장</p>
           <h2>권대용</h2>

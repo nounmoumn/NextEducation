@@ -1,3 +1,11 @@
+/** 소개 페이지 이사장 사진 슬라이드 (원본 Wix 슬라이드쇼 순서) */
+export const directorPhotos = [
+  { src: 'images/site/director-1.jpg', alt: '이사장 권대용 — 강연 중인 모습' },
+  { src: 'images/site/director-2.png', alt: '이사장 권대용 — 인물 사진' },
+  { src: 'images/site/director-3.jpg', alt: '이사장 권대용 — 연구실에서' },
+  { src: 'images/site/director-4.png', alt: '이사장 권대용 — 강의 중인 모습' },
+]
+
 export const history = [
   { date: '2015.09', text: '미래융합교육연구소 설립' },
   { date: '2016.01', text: '서울시교육청 특수분야연수기관 지정(융합 영재교육 직무연수)' },

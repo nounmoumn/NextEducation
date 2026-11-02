@@ -721,11 +721,100 @@ h4 {
   grid-template-columns: 1fr 1fr;
 }
 
-.greeting-photo img {
+.greeting-photo {
+  min-height: 420px;
+}
+
+/* ---------- Photo slider ---------- */
+.photo-slider {
+  position: relative;
+  overflow: hidden;
+  background: #1d2433;
+  outline-offset: -3px;
+}
+
+.photo-slider img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  min-height: 420px;
+  object-position: center 30%;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+
+.photo-slider img.active {
+  opacity: 1;
+}
+
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 44px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  opacity: 0.85;
+  transition: opacity 0.15s;
+}
+
+.slider-arrow:hover {
+  opacity: 1;
+}
+
+.slider-arrow svg {
+  width: 18px;
+  height: 36px;
+  fill: #fff;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
+}
+
+.slider-arrow.prev {
+  left: 12px;
+}
+
+.slider-arrow.next {
+  right: 12px;
+}
+
+.slider-arrow.next svg {
+  transform: scaleX(-1);
+}
+
+.slider-dots {
+  position: absolute;
+  left: 24px;
+  bottom: 20px;
+  z-index: 2;
+  display: flex;
+  gap: 10px;
+}
+
+.slider-dots button {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+}
+
+.slider-dots button.active {
+  background: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo-slider img {
+    transition: none;
+  }
 }
 
 .greeting-text {
@@ -777,9 +866,9 @@ h4 {
     grid-template-columns: 1fr;
   }
 
-  .greeting-photo img {
+  .greeting-photo {
     min-height: 0;
-    max-height: 420px;
+    aspect-ratio: 4 / 3;
   }
 }
 
