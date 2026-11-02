@@ -238,6 +238,10 @@ h4 {
   margin-top: 28px;
 }
 
+.hero-normal .hero-sub {
+  text-align: center;
+}
+
 .hero-sub {
   margin: 18px 0 0;
   font-size: clamp(15px, 1.8vw, 19px);
