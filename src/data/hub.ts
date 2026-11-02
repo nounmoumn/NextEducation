@@ -18,7 +18,18 @@ export const hubNotice = {
   launch: '2026년 12월 정식운영 예정',
 }
 
-export const tools = [
+export type Tool = {
+  key: string
+  name: string
+  role: string
+  text: string
+  /** 제품 화면이 있으면 사진, 없으면 아이콘 + topics 로 같은 크기의 그림 영역을 채운다 */
+  image?: string
+  icon?: 'book' | 'chat'
+  topics?: string[]
+}
+
+export const tools: Tool[] = [
   {
     key: 'ai',
     name: 'MakePlayAI',
@@ -37,13 +48,17 @@ export const tools = [
     key: 'learn',
     name: '학습 콘텐츠',
     role: 'AI·수학 기초 지식',
-    text: '머신러닝, 분류와 회귀, 행렬과 벡터, 확률과 통계, 신경망 구조, 과적합과 일반화처럼 AI를 이해하는 데 필요한 개념을 익힙니다.',
+    text: 'AI 모델을 이해하고 활용하는 데 필요한 수학 개념과 AI 원리를 익힙니다. 이론을 먼저 보고 싶을 때나 실습 중 막힐 때 찾아보는 공간입니다.',
+    icon: 'book',
+    topics: ['머신러닝', '분류 vs 회귀', '행렬과 벡터', '확률과 통계', '신경망 구조', '과적합과 일반화'],
   },
   {
     key: 'tutor',
     name: 'AI 튜터',
     role: '언제든 묻는 대화형 도우미',
     text: '모델 학습이나 서비스 구현 중 막히는 부분을 바로 질문할 수 있습니다. 개념 설명부터 오류 해결까지 학습 흐름을 끊지 않고 도움을 받습니다.',
+    icon: 'chat',
+    topics: ['개념 설명', '모델 학습 도움', '서비스 구현 도움', '오류 해결'],
   },
 ]
 
