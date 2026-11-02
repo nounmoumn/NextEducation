@@ -1,9 +1,13 @@
 :root {
+  /* 원본 Wix 사이트 팔레트 */
   --navy: #343f64;
   --navy-deep: #2e3a59;
-  --blue-dark: #0b4a8b;
-  --blue: #2f7bd0;
+  --blue-dark: #004b89;
+  --blue: #197ec2;
   --blue-light: #3b8fd9;
+  --shape: #3d9be9;
+  --ease-wix: cubic-bezier(0.645, 0.045, 0.355, 1);
+  --font-display: 'Helvetica Neue', Helvetica, Arial, 'Noto Sans KR', sans-serif;
   --text: #242323;
   --text-soft: #555b6e;
   --muted: #8a8f9c;
@@ -233,8 +237,9 @@ h4 {
 
 .hero-tall h1 {
   text-align: left;
-  font-size: clamp(36px, 6vw, 60px);
-  font-weight: 900;
+  font-family: var(--font-display);
+  font-size: clamp(36px, 6vw, 67px);
+  font-weight: 700;
   margin-top: 28px;
 }
 
@@ -244,12 +249,13 @@ h4 {
 
 .hero-sub {
   margin: 18px 0 0;
-  font-size: clamp(15px, 1.8vw, 19px);
+  font-size: clamp(15px, 1.8vw, 21px);
   font-weight: 500;
   opacity: 0.95;
 }
 
 /* ---------- Accent bar ---------- */
+/* 기본: 원본 섹션 제목 위 2색 블록 (48x16) */
 .accent-bar {
   display: flex;
   margin-bottom: 18px;
@@ -257,8 +263,8 @@ h4 {
 
 .accent-bar span {
   display: block;
-  width: 40px;
-  height: 6px;
+  width: 46px;
+  height: 14px;
 }
 
 .accent-bar span:nth-child(1) {
@@ -270,11 +276,14 @@ h4 {
 }
 
 .accent-bar span:nth-child(3) {
-  background: #8fc1ee;
+  display: none;
 }
 
+/* 히어로 배너: 흰색·남색·파랑 3색 막대 (72x8) */
 .accent-bar.light span {
-  width: 57px;
+  display: block;
+  width: 72px;
+  height: 8px;
 }
 
 .accent-bar.light span:nth-child(1) {
@@ -303,8 +312,10 @@ h4 {
 }
 
 .section-title {
-  font-size: clamp(28px, 4vw, 40px);
-  font-weight: 900;
+  font-family: var(--font-display);
+  font-size: clamp(30px, 4.4vw, 50px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
   color: var(--navy);
   margin-bottom: 28px;
 }
@@ -366,71 +377,196 @@ h4 {
 }
 
 /* ---------- Home: welcome ---------- */
+.welcome-section {
+  overflow-x: clip;
+  padding: 120px 0 110px;
+}
+
 .welcome {
   display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  gap: 56px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+  gap: 72px;
   align-items: center;
 }
 
+/* 이미지는 원본처럼 화면 왼쪽 끝까지 붙인다 */
 .welcome-media {
   position: relative;
-  padding: 18px;
+  margin-left: min(-24px, calc((1120px - 100vw) / 2 - 24px));
 }
 
-.welcome-media img {
+.welcome-image {
+  display: block;
+  height: 442px;
+  overflow: hidden;
+}
+
+.welcome-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+}
+
+.shape {
+  position: absolute;
+  z-index: 2;
+  color: var(--shape);
+  fill: var(--shape);
+}
+
+.shape-ring {
+  width: 60px;
+  height: 61px;
+  top: -13px;
+  right: -64px;
+}
+
+.shape-square {
+  width: 54px;
+  height: 54px;
+  right: -22px;
+  bottom: -18px;
+}
+
+.welcome-text {
   position: relative;
-  z-index: 1;
-  border-radius: 4px;
-  box-shadow: var(--shadow);
 }
 
-.deco-ring {
-  position: absolute;
-  top: 0;
-  right: -6px;
-  width: 52px;
-  height: 52px;
-  border: 10px solid var(--blue);
-  border-radius: 50%;
-  z-index: 2;
-}
-
-.deco-square {
-  position: absolute;
-  bottom: 0;
-  right: 30px;
-  width: 38px;
-  height: 38px;
-  border: 7px solid var(--blue);
-  border-radius: 6px;
-  z-index: 2;
-  background: #fff;
+.shape-step {
+  width: 32px;
+  height: 36px;
+  top: -16px;
+  left: 282px;
 }
 
 .welcome-title {
-  font-size: clamp(26px, 3.4vw, 36px);
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.4vw, 41px);
+  line-height: 1.4;
   color: var(--navy);
-  margin-bottom: 24px;
+  margin-bottom: 26px;
 }
 
-.welcome-title span {
+.welcome-en {
   display: block;
-  font-weight: 900;
-  color: var(--blue-dark);
+  font-weight: 700;
 }
 
-.welcome-text p {
-  color: var(--text-soft);
-  font-size: 15px;
-  margin: 0 0 16px;
+.welcome-ko {
+  display: block;
+  font-weight: 400;
+}
+
+.welcome-body p {
+  color: var(--navy);
+  font-size: 14px;
+  line-height: 2;
+  font-weight: 300;
+  margin: 0 0 20px;
+}
+
+/* 등장 애니메이션 — 원본 Wix의 revealIn / glideIn 값 */
+.welcome-section .anim-reveal,
+.welcome-section .anim-glide,
+.welcome-section .anim-glide-far {
+  opacity: 0;
+}
+
+.welcome-section.is-in .anim-reveal {
+  animation: wix-reveal 2s var(--ease-wix) both;
+}
+
+.welcome-section.is-in .anim-glide {
+  animation: wix-glide 1.2s var(--ease-wix) both;
+}
+
+.welcome-section.is-in .anim-glide-far {
+  animation: wix-glide-far 2s var(--ease-wix) both;
+}
+
+.welcome-section.is-in .anim-delay {
+  animation-delay: 0.6s;
+}
+
+@keyframes wix-reveal {
+  from {
+    opacity: 1;
+    clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
+  }
+  to {
+    opacity: 1;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+}
+
+@keyframes wix-glide {
+  from {
+    opacity: 1;
+    transform: translateX(150px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes wix-glide-far {
+  from {
+    opacity: 1;
+    transform: translateX(100vw);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .welcome-section .anim-reveal,
+  .welcome-section .anim-glide,
+  .welcome-section .anim-glide-far {
+    opacity: 1;
+    animation: none !important;
+  }
 }
 
 @media (max-width: 860px) {
+  .welcome-section {
+    padding: 72px 0;
+  }
+
   .welcome {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 56px;
+  }
+
+  .welcome-media {
+    margin-left: -24px;
+    margin-right: 40px;
+  }
+
+  .welcome-image {
+    height: auto;
+    aspect-ratio: 847 / 442;
+  }
+
+  .shape-ring {
+    width: 48px;
+    height: 49px;
+    right: -30px;
+    top: -18px;
+  }
+
+  .shape-square {
+    width: 44px;
+    height: 44px;
+    right: -14px;
+  }
+
+  .shape-step {
+    left: auto;
+    right: 8px;
   }
 }
 
