@@ -89,6 +89,29 @@ h4 {
   left: 8px;
 }
 
+/* ---------- Page transition (원본 Wix: OutIn 700ms) ---------- */
+.page-transition {
+  transition: opacity 0.35s cubic-bezier(0.47, 0, 0.745, 0.715);
+}
+
+.page-transition.is-leaving {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.page-transition.is-entering {
+  animation: page-in 0.35s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 /* ---------- Header ---------- */
 .site-header {
   position: sticky;
