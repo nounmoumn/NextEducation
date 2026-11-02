@@ -90,8 +90,7 @@
 
 .tool-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-auto-rows: 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
 }
 
@@ -104,9 +103,9 @@
   flex-direction: column;
 }
 
-/* 네 카드 모두 같은 크기의 그림 영역 */
+/* 세 카드 모두 같은 크기의 그림 영역 */
 .tool-media {
-  aspect-ratio: 16 / 8;
+  aspect-ratio: 16 / 10;
   overflow: hidden;
   border-bottom: 1px solid var(--line);
   background: #f3f5f9;
@@ -125,8 +124,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 18px;
-  padding: 20px 28px;
+  gap: 16px;
+  padding: 20px;
   background: linear-gradient(135deg, #eaf2fb 0%, #f6f9fd 100%);
 }
 
@@ -163,11 +162,11 @@
 
 .tool-body {
   flex: 1;
-  padding: 24px 28px 28px;
+  padding: 22px 24px 26px;
 }
 
 .tool-body h3 {
-  font-size: 22px;
+  font-size: 21px;
   color: var(--navy);
 }
 
@@ -258,8 +257,10 @@
   }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 900px) {
   .tool-grid {
     grid-template-columns: 1fr;
+    max-width: 560px;
+    margin: 0 auto;
   }
 }

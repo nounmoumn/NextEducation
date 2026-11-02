@@ -27,21 +27,12 @@ function Brand({ name }: { name: string }) {
   )
 }
 
-/** 제품 화면이 없는 도구 카드에 쓰는 선 아이콘 */
-function ToolIcon({ name }: { name?: 'book' | 'chat' }) {
+/** 제품 화면이 없는 도구 카드(학습 콘텐츠)에 쓰는 책 아이콘 */
+function BookIcon() {
   return (
     <svg className="tool-icon" viewBox="0 0 24 24" aria-hidden="true">
-      {name === 'chat' ? (
-        <>
-          <path d="M21 12a8 8 0 0 1-11.7 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12z" />
-          <path d="M8.5 12h.01M12 12h.01M15.5 12h.01" />
-        </>
-      ) : (
-        <>
-          <path d="M2 5.5A1.5 1.5 0 0 1 3.5 4H9a3 3 0 0 1 3 3v13a2.5 2.5 0 0 0-2.5-2.5h-6A1.5 1.5 0 0 1 2 16z" />
-          <path d="M22 5.5A1.5 1.5 0 0 0 20.5 4H15a3 3 0 0 0-3 3v13a2.5 2.5 0 0 1 2.5-2.5h6a1.5 1.5 0 0 0 1.5-1.5z" />
-        </>
-      )}
+      <path d="M2 5.5A1.5 1.5 0 0 1 3.5 4H9a3 3 0 0 1 3 3v13a2.5 2.5 0 0 0-2.5-2.5h-6A1.5 1.5 0 0 1 2 16z" />
+      <path d="M22 5.5A1.5 1.5 0 0 0 20.5 4H15a3 3 0 0 0-3 3v13a2.5 2.5 0 0 1 2.5-2.5h6a1.5 1.5 0 0 0 1.5-1.5z" />
     </svg>
   )
 }
@@ -105,7 +96,7 @@ export default function Hub() {
                     <img src={asset(t.image)} alt={`${t.name} 화면`} loading="lazy" />
                   ) : (
                     <div className="tool-visual">
-                      <ToolIcon name={t.icon} />
+                      <BookIcon />
                       <ul>
                         {t.topics?.map((topic) => (
                           <li key={topic}>{topic}</li>
