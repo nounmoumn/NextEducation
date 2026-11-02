@@ -3,7 +3,8 @@ import { asset } from '../data/site'
 import { useLang, type L } from '../i18n/lang'
 import { ui } from '../i18n/ui'
 
-type Photo = { src: string; alt: L }
+/** fit: 'cover'(기본) = 칸을 채움, 'original' = 원래 크기로 가운데 (칸보다 크면 맞춰 줄임) */
+type Photo = { src: string; alt: L; fit?: 'cover' | 'original'; position?: string }
 
 type Props = {
   photos: Photo[]
@@ -59,7 +60,8 @@ export default function PhotoSlider({ photos, interval = 5000, className = '' }:
           key={p.src}
           src={asset(p.src)}
           alt={t(p.alt)}
-          className={i === index ? 'active' : undefined}
+          className={`${p.fit === 'original' ? 'fit-original' : ''}${i === index ? ' active' : ''}`.trim() || undefined}
+          style={p.position ? { objectPosition: p.position } : undefined}
           aria-hidden={i !== index}
           loading={i === 0 ? 'eager' : 'lazy'}
         />

@@ -1,11 +1,30 @@
 import type { L } from '../i18n/lang'
 
-/** 소개 페이지 이사장 사진 슬라이드 (원본 Wix 슬라이드쇼 순서) */
-export const directorPhotos: { src: string; alt: L }[] = [
-  { src: 'images/site/director-1.jpg', alt: { ko: '이사장 권대용 — 강연 중인 모습', en: 'Chairman Dae-Yong Kwon giving a talk' } },
-  { src: 'images/site/director-2.png', alt: { ko: '이사장 권대용 — 인물 사진', en: 'Portrait of Chairman Dae-Yong Kwon' } },
-  { src: 'images/site/director-3.jpg', alt: { ko: '이사장 권대용 — 연구실에서', en: 'Chairman Dae-Yong Kwon at the lab' } },
-  { src: 'images/site/director-4.png', alt: { ko: '이사장 권대용 — 강의 중인 모습', en: 'Chairman Dae-Yong Kwon giving a lecture' } },
+/**
+ * 소개 페이지 이사장 사진 슬라이드 (원본 Wix 슬라이드쇼 순서·표시 방식 그대로)
+ * fit: 'cover' = 칸을 채움(position 기준으로 자름), 'original' = 원래 크기로 가운데 (원본 3번 사진)
+ */
+export const directorPhotos: { src: string; alt: L; fit?: 'cover' | 'original'; position?: string }[] = [
+  {
+    src: 'images/site/director-1.jpg',
+    alt: { ko: '이사장 권대용 — 강연 중인 모습', en: 'Chairman Dae-Yong Kwon giving a talk' },
+    position: 'center',
+  },
+  {
+    src: 'images/site/director-2.png',
+    alt: { ko: '이사장 권대용 — 인물 사진', en: 'Portrait of Chairman Dae-Yong Kwon' },
+    position: 'left center',
+  },
+  {
+    src: 'images/site/director-3.jpg',
+    alt: { ko: '이사장 권대용 — 연구실에서', en: 'Chairman Dae-Yong Kwon at the lab' },
+    fit: 'original',
+  },
+  {
+    src: 'images/site/director-4.png',
+    alt: { ko: '이사장 권대용 — 강의 중인 모습', en: 'Chairman Dae-Yong Kwon giving a lecture' },
+    position: 'center top',
+  },
 ]
 
 export const greeting = {
