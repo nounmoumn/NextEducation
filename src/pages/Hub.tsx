@@ -11,9 +11,7 @@ import {
   hubLinks,
   hubNotice,
   makeplayUrl,
-  methodSteps,
   partners,
-  projectFlow,
   tools,
 } from '../data/hub'
 
@@ -129,41 +127,6 @@ export default function Hub() {
                 </div>
               </article>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 학습 방법 */}
-      <section className="section section-dark">
-        <div className="container">
-          <AccentBar light />
-          <h2 className="section-title">어떻게 배우나요?</h2>
-          <p className="section-lead">
-            AI가 답을 내는 시대에 사람에게 필요한 것은 문제 해결 과정을 설계하고 관리하는 메타인지입니다.
-          </p>
-          <div className="method-grid">
-            {methodSteps.map((m) => (
-              <article key={m.no} className="method-card">
-                <span className="method-no">{m.no}</span>
-                <h3>{m.title}</h3>
-                <p>{m.text}</p>
-              </article>
-            ))}
-          </div>
-
-          <h3 className="sub-title light">상호작용 중심의 프로젝트 기반 학습</h3>
-          <ol className="flow">
-            {projectFlow.map((f) => (
-              <li key={f.title}>
-                <strong>{f.title}</strong>
-                <span>{f.text}</span>
-              </li>
-            ))}
-          </ol>
-          <div className="text-center-link">
-            <ExternalLink href={hubLinks.methods} className="more-link light">
-              AI 학습 방법 자세히 보기 ↗
-            </ExternalLink>
           </div>
         </div>
       </section>

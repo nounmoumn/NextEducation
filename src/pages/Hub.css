@@ -33,10 +33,6 @@
   margin: 48px 0 18px;
 }
 
-.sub-title.light {
-  color: #fff;
-}
-
 .small {
   font-size: 13px;
 }
@@ -60,15 +56,6 @@
 
 .btn-light:hover {
   background: #e7eef9;
-}
-
-.text-center-link {
-  text-align: center;
-  margin-top: 32px;
-}
-
-.more-link.light {
-  color: #cfe2ff;
 }
 
 .hub-intro {
@@ -200,88 +187,6 @@
   margin: 0;
   color: var(--text-soft);
   font-size: 14.5px;
-}
-
-.section-dark {
-  background: linear-gradient(135deg, #1d2b4f, #23466f);
-  color: #fff;
-}
-
-.section-dark .section-title {
-  color: #fff;
-}
-
-.section-dark .section-lead {
-  color: #c9d6ea;
-}
-
-.method-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
-}
-
-.method-card {
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: var(--radius);
-  padding: 26px;
-}
-
-.method-no {
-  font-size: 14px;
-  font-weight: 700;
-  color: #8fc1ee;
-}
-
-.method-card h3 {
-  font-size: 19px;
-  margin: 6px 0 10px;
-}
-
-.method-card p {
-  margin: 0;
-  font-size: 14.5px;
-  color: #dbe5f4;
-}
-
-.flow {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 26px;
-}
-
-.flow li {
-  position: relative;
-  background: #fff;
-  color: var(--navy);
-  border-radius: var(--radius);
-  padding: 18px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.flow li strong {
-  font-size: 18px;
-}
-
-.flow li span {
-  font-size: 13.5px;
-  color: var(--text-soft);
-}
-
-.flow li + li::before {
-  content: '\2192';
-  position: absolute;
-  left: -13px;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  color: #8fc1ee;
-  font-weight: 700;
 }
 
 .hub-tabs {
@@ -443,20 +348,10 @@
     grid-template-columns: 1fr;
     gap: 36px;
   }
-
-  .flow {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .flow li + li::before {
-    display: none;
-  }
 }
 
 @media (max-width: 760px) {
-  .tool-grid,
-  .method-grid,
-  .flow {
+  .tool-grid {
     grid-template-columns: 1fr;
   }
 }

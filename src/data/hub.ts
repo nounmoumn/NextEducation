@@ -6,7 +6,6 @@ export const makeplayUrl = 'https://makeplayai.net/nn/'
 
 export const hubLinks = {
   service: `${makeplayUrl}intro/service`,
-  methods: `${makeplayUrl}philosophy/methods`,
   tryAI: `${makeplayUrl}try/makeplayai`,
   trySW: `${makeplayUrl}try/makeplaysw`,
   knowledge: `${makeplayUrl}learn/knowledge`,
@@ -60,31 +59,6 @@ export const tools: Tool[] = [
     icon: 'chat',
     topics: ['개념 설명', '모델 학습 도움', '서비스 구현 도움', '오류 해결'],
   },
-]
-
-export const methodSteps = [
-  {
-    no: '01',
-    title: 'AI 문제 해결 과정',
-    text: 'AI가 생성과 판단까지 맡게 되면서, 사람은 기획·설계·통제를 담당하게 되었습니다. 메타 사고와 가치 중심적인 수행이 사람의 역할입니다.',
-  },
-  {
-    no: '02',
-    title: '절차적 사고',
-    text: 'AI에게 목표만 주고 답을 받는 대신, 내가 확인할 수 있는 단위로 절차를 나누어 그대로 수행하게 합니다. 그래야 AI를 관리할 수 있고 결과도 설명할 수 있습니다.',
-  },
-  {
-    no: '03',
-    title: '데이터 기반 평가',
-    text: '각 절차의 입력과 출력을 데이터로 확인하고, 다음 단계로 넘어갈지 고칠지를 판단합니다.',
-  },
-]
-
-export const projectFlow = [
-  { title: '이해', text: '개념과 원리를 단계적으로 학습' },
-  { title: '체험', text: '실제 도구로 직접 수행' },
-  { title: '수행', text: '수준에 맞는 수행형 활동을 연속으로' },
-  { title: '결과물', text: '나만의 AI 서비스 완성' },
 ]
 
 export type Experience = {
