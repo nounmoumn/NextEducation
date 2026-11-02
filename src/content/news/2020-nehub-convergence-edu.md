@@ -2,6 +2,7 @@
 title: 2020년 미래교육허브 융합교육 진행
 date: 2020-02-05
 category: news
+order: 1
 cover: /images/news/2020-nehub-convergence-edu.png
 ---
 
