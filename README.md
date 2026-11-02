@@ -23,6 +23,8 @@ npm run build    # dist/ 에 정적 파일 생성
 
 Wix가 기본 제공하던 배경 영상·스톡 이미지는 옮기지 않고 그라디언트 배너(`src/components/PageHero.tsx`)로 대체했습니다.
 
+디자인 기록(색·글자 스타일·도형 컴포넌트·홈 Welcome 애니메이션 명세)은 [Figma](https://www.figma.com/design/amTDDZ15Ll4eACMdY4dp7U)에 있습니다.
+
 ## 폴더 구조
 
 ```
