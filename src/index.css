@@ -295,15 +295,37 @@ h4 {
 }
 
 .hero-tall {
-  min-height: 420px;
+  min-height: 490px;
+}
+
+/* 원본처럼 980px 본문 폭 안에서 왼쪽으로부터 약 104px 들여서 시작 */
+.hero-tall .container {
+  max-width: 980px;
+  padding-left: 104px;
 }
 
 .hero-tall h1 {
   text-align: left;
   font-family: var(--font-display);
-  font-size: clamp(36px, 6vw, 67px);
+  font-size: clamp(40px, 6.6vw, 72px);
   font-weight: 700;
   margin-top: 28px;
+}
+
+.hero-tall .hero-sub {
+  margin-top: 22px;
+  font-size: clamp(15px, 1.6vw, 19px);
+  font-weight: 400;
+}
+
+@media (max-width: 860px) {
+  .hero-tall {
+    min-height: 380px;
+  }
+
+  .hero-tall .container {
+    padding-left: 24px;
+  }
 }
 
 .hero-normal .hero-sub {
