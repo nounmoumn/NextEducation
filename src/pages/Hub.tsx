@@ -2,12 +2,12 @@ import { useState, type ReactNode } from 'react'
 import PageHero from '../components/PageHero'
 import './Hub.css'
 import AccentBar from '../components/AccentBar'
+import ShowcaseCarousel from '../components/ShowcaseCarousel'
 import { asset } from '../data/site'
 import {
   audiences,
   competencies,
   experiences,
-  gallery,
   goals,
   hubLinks,
   hubNotice,
@@ -42,7 +42,6 @@ function ExternalLink({ href, children, className = 'btn btn-primary' }: { href:
 
 export default function Hub() {
   const [tool, setTool] = useState<'all' | 'MakePlayAI' | 'MakePlaySW'>('all')
-  const [shot, setShot] = useState(0)
   const visible = experiences.filter((e) => tool === 'all' || e.tool === tool)
 
   return (
@@ -75,24 +74,7 @@ export default function Hub() {
               </ExternalLink>
             </div>
           </div>
-          <figure className="hub-gallery">
-            <div className="hub-gallery-main">
-              <img src={asset(gallery[shot].src)} alt={gallery[shot].caption} />
-            </div>
-            <figcaption>{gallery[shot].caption}</figcaption>
-            <div className="hub-gallery-thumbs">
-              {gallery.map((g, i) => (
-                <button
-                  key={g.src}
-                  className={i === shot ? 'active' : undefined}
-                  onClick={() => setShot(i)}
-                  aria-label={g.caption}
-                >
-                  <img src={asset(g.src)} alt="" loading="lazy" />
-                </button>
-              ))}
-            </div>
-          </figure>
+          <ShowcaseCarousel renderBrand={(b) => <Brand name={`MakePlay${b}`} />} />
         </div>
       </section>
 

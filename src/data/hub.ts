@@ -173,10 +173,41 @@ export const goals = [
 
 export const partners = ['고려대학교 사회통합AI교육 연구소', '(사) 미래융합교육연구소', '창의재단', '2026 AI 동행 지원단']
 
-export const gallery = [
-  { src: 'images/makeplay/AI-super-dataProcessing.png', caption: 'MakePlayAI · 데이터 전처리' },
-  { src: 'images/makeplay/AI-super-catDogImage.png', caption: 'MakePlayAI · 이미지 학습' },
-  { src: 'images/makeplay/AI-unsuper-kmeans.png', caption: 'MakePlayAI · K-means 군집화' },
-  { src: 'images/makeplay/SW-mainConstruction.png', caption: 'MakePlaySW · 서비스 구성' },
-  { src: 'images/makeplay/SW-aiModelEdit.png', caption: 'MakePlaySW · AI 모델 편집' },
+export type ShowcaseBrand = 'AI' | 'SW'
+
+/** 돋보기 위치(이미지 기준 %)와 확대 배율 */
+export type Loupe = { focusX: number; focusY: number; zoom: number }
+
+export type ShowcaseShot = { src: string; alt: string; loupe: Loupe }
+
+/** 미래교육허브 상단 화면 캐러셀 — MakePlayAI 홈의 순서·돋보기 위치를 따른다 */
+const aiShots: ShowcaseShot[] = [
+  { src: 'images/makeplay/AI-super-dataProcessing.png', alt: '데이터 전처리 화면', loupe: { focusX: 11, focusY: 23, zoom: 2 } },
+  { src: 'images/makeplay/AI-super-decisionTree.png', alt: '의사결정나무 화면', loupe: { focusX: 40, focusY: 25, zoom: 3 } },
+  { src: 'images/makeplay/AI-super-catDogImage.png', alt: '이미지 학습 화면', loupe: { focusX: 10, focusY: 34, zoom: 1.8 } },
+  { src: 'images/makeplay/AI-super-multiLayer.png', alt: '다층 신경망 화면', loupe: { focusX: 45, focusY: 19, zoom: 2.25 } },
+  { src: 'images/makeplay/AI-super-nnSet.png', alt: '신경망 설정 화면', loupe: { focusX: 35, focusY: 48, zoom: 2.5 } },
+  { src: 'images/makeplay/AI-super-regression.png', alt: '회귀 학습 화면', loupe: { focusX: 35, focusY: 75, zoom: 2.5 } },
+  { src: 'images/makeplay/AI-super-singleLayer.png', alt: '단층 신경망 화면', loupe: { focusX: 65, focusY: 30, zoom: 2.25 } },
+  { src: 'images/makeplay/AI-unsuper-dbscan.png', alt: 'DBSCAN 군집화 화면', loupe: { focusX: 60, focusY: 20, zoom: 2.2 } },
+  { src: 'images/makeplay/AI-unsuper-kmeans.png', alt: 'K-means 군집화 화면', loupe: { focusX: 85, focusY: 35, zoom: 2.3 } },
+  { src: 'images/makeplay/AI-unsuper-kmeansSet.png', alt: 'K-means 설정 화면', loupe: { focusX: 50, focusY: 50, zoom: 2.15 } },
 ]
+
+const swShots: ShowcaseShot[] = [
+  { src: 'images/makeplay/SW-aiModelEdit.png', alt: 'AI 모델 편집 화면', loupe: { focusX: 30, focusY: 65, zoom: 2.15 } },
+  { src: 'images/makeplay/SW-codeBlockEdit.png', alt: '코드 블록 편집 화면', loupe: { focusX: 25, focusY: 50, zoom: 2.15 } },
+  { src: 'images/makeplay/SW-dbEdit.png', alt: 'DB 편집 화면', loupe: { focusX: 25, focusY: 35, zoom: 2.15 } },
+  { src: 'images/makeplay/SW-mainConstruction.png', alt: '메인 구성 화면', loupe: { focusX: 65, focusY: 45, zoom: 2.15 } },
+  { src: 'images/makeplay/SW-uiEdit.png', alt: 'UI 편집 화면', loupe: { focusX: 16, focusY: 35, zoom: 2.15 } },
+  { src: 'images/makeplay/SW-simulationWork.png', alt: '시뮬레이션 작업 화면', loupe: { focusX: 10, focusY: 80, zoom: 2.15 } },
+]
+
+/** 한 슬라이드에 화면 2장씩 위아래로 */
+function pairUp(shots: ShowcaseShot[], brand: ShowcaseBrand) {
+  const slides: { brand: ShowcaseBrand; shots: ShowcaseShot[] }[] = []
+  for (let i = 0; i < shots.length; i += 2) slides.push({ brand, shots: shots.slice(i, i + 2) })
+  return slides
+}
+
+export const showcaseSlides = [...pairUp(aiShots, 'AI'), ...pairUp(swShots, 'SW')]

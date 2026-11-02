@@ -73,8 +73,8 @@
 
 .hub-intro {
   display: grid;
-  grid-template-columns: 1fr 1.1fr;
-  gap: 56px;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 48px;
   align-items: center;
 }
 
@@ -104,62 +104,6 @@
   background: #e8f1fc;
   color: var(--blue-dark);
   font-size: 14px;
-}
-
-.hub-gallery {
-  margin: 0;
-}
-
-.hub-gallery-main {
-  aspect-ratio: 16 / 10;
-  border-radius: var(--radius);
-  overflow: hidden;
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow);
-  background: #f3f5f9;
-}
-
-.hub-gallery-main img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top left;
-}
-
-.hub-gallery figcaption {
-  font-size: 13px;
-  color: var(--muted);
-  margin: 10px 2px;
-}
-
-.hub-gallery-thumbs {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 8px;
-}
-
-.hub-gallery-thumbs button {
-  padding: 0;
-  border: 2px solid transparent;
-  border-radius: 6px;
-  overflow: hidden;
-  cursor: pointer;
-  aspect-ratio: 16 / 10;
-  background: #f3f5f9;
-  opacity: 0.65;
-}
-
-.hub-gallery-thumbs button.active,
-.hub-gallery-thumbs button:hover {
-  border-color: var(--blue);
-  opacity: 1;
-}
-
-.hub-gallery-thumbs img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top left;
 }
 
 .tool-grid {
