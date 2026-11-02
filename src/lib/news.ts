@@ -15,7 +15,13 @@
  *   본문(마크다운)
  *
  * 파일 이름(확장자 제외)이 URL slug가 된다: /news/<파일이름>
+ *
+ * 언어: 게시물은 사이트 번역과 따로 관리한다. 기본은 한국어 파일(<slug>.md)이고,
+ * 영어판이 필요하면 같은 이름의 <slug>.en.md 를 추가한다 (date·order·cover는 한국어 파일을 따름).
+ * 영어 화면에서 영어판이 없는 게시물은 한국어 원문을 그대로 보여 주고 '한국어' 표시를 붙인다.
  */
+
+import type { Lang } from '../i18n/lang'
 
 export type NewsCategory = 'news' | 'event' | 'notice'
 
@@ -29,6 +35,8 @@ export type NewsPost = {
   body: string
   readingMinutes: number
   order: number
+  /** 이 게시물 내용의 실제 언어 */
+  lang: Lang
 }
 
 const files = import.meta.glob('../content/news/*.md', {
@@ -59,7 +67,9 @@ function plainText(markdown: string) {
 }
 
 function toPost(path: string, raw: string): NewsPost {
-  const slug = path.split('/').pop()!.replace(/\.md$/, '')
+  const file = path.split('/').pop()!.replace(/\.md$/, '')
+  const lang: Lang = file.endsWith('.en') ? 'en' : 'ko'
+  const slug = file.replace(/\.en$/, '')
   const { data, body } = parseFrontmatter(raw)
   const text = plainText(body)
   const summary = data.summary || (text.length > 120 ? `${text.slice(0, 120)}...` : text)
@@ -74,28 +84,45 @@ function toPost(path: string, raw: string): NewsPost {
     cover: data.cover || undefined,
     summary,
     body,
-    // 한국어 기준 대략 분당 500자
-    readingMinutes: Math.max(1, Math.round(text.length / 500)),
+    // 한국어는 분당 약 500자, 영어는 분당 약 200단어
+    readingMinutes: Math.max(1, Math.round(lang === 'en' ? text.split(' ').length / 200 : text.length / 500)),
     order: Number(data.order) || 0,
+    lang,
   }
 }
 
-export const allPosts: NewsPost[] = Object.entries(files)
-  .map(([path, raw]) => toPost(path, raw))
+const parsed = Object.entries(files).map(([path, raw]) => toPost(path, raw))
+const englishBySlug = new Map(parsed.filter((p) => p.lang === 'en').map((p) => [p.slug, p]))
+
+/** 한국어 게시물(기준 목록) — 날짜 최신순, 같은 날짜는 order 순 */
+export const allPosts: NewsPost[] = parsed
+  .filter((p) => p.lang === 'ko')
   .sort((a, b) => b.date.localeCompare(a.date) || a.order - b.order || a.slug.localeCompare(b.slug))
 
-export function getPost(slug: string) {
-  return allPosts.find((p) => p.slug === slug)
+/** 화면 언어에 맞춘 게시물: 영어 화면이면 영어판이 있는 것만 영어로 바꾼다 */
+function localize(post: NewsPost, lang: Lang): NewsPost {
+  const en = lang === 'en' ? englishBySlug.get(post.slug) : undefined
+  return en ? { ...en, date: post.date, order: post.order, cover: en.cover ?? post.cover, category: post.category } : post
 }
 
-export const categoryLabels: Record<NewsCategory, string> = {
-  news: 'News',
-  event: 'Event',
-  notice: '공지',
+export function postsFor(lang: Lang) {
+  return allPosts.map((p) => localize(p, lang))
 }
 
-export function formatDate(date: string) {
+export function getPost(slug: string, lang: Lang = 'ko') {
+  const post = allPosts.find((p) => p.slug === slug)
+  return post && localize(post, lang)
+}
+
+export const categoryLabels: Record<NewsCategory, { ko: string; en: string }> = {
+  news: { ko: 'News', en: 'News' },
+  event: { ko: 'Event', en: 'Event' },
+  notice: { ko: '공지', en: 'Notice' },
+}
+
+export function formatDate(date: string, lang: Lang = 'ko') {
   const d = new Date(`${date}T00:00:00`)
   if (Number.isNaN(d.getTime())) return date
+  if (lang === 'en') return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
   return `${d.getFullYear()}년 ${d.getMonth() + 1}월 ${d.getDate()}일`
 }

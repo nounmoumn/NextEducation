@@ -2,6 +2,8 @@ import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import { asset } from '../data/site'
 import { showcaseSlides, type ShowcaseBrand } from '../data/hub'
+import { useLang } from '../i18n/lang'
+import { ui } from '../i18n/ui'
 import './ShowcaseCarousel.css'
 
 /** 자동 넘김 간격 (MakePlayAI 홈과 동일) */
@@ -33,6 +35,7 @@ export default function ShowcaseCarousel({ renderBrand }: { renderBrand: (brand:
   const [hovered, setHovered] = useState(false)
   const [loupeVisible, setLoupeVisible] = useState(false)
   const [frames, setFrames] = useState<LoupeFrame[]>([])
+  const { t } = useLang()
 
   // 현재 슬라이드 이미지들의 실제 위치를 재서 돋보기 좌표를 만든다
   const measure = useCallback(() => {
@@ -109,7 +112,7 @@ export default function ShowcaseCarousel({ renderBrand }: { renderBrand: (brand:
               key={b}
               type="button"
               aria-pressed={currentBrand === b}
-              aria-label={`MakePlay${b} 슬라이드로 이동`}
+              aria-label={t(ui.goToBrand)(b)}
               className={currentBrand === b ? 'active' : undefined}
               onClick={() => jumpTo(b)}
             >
@@ -119,7 +122,7 @@ export default function ShowcaseCarousel({ renderBrand }: { renderBrand: (brand:
         </div>
 
         <div className="showcase-row">
-          <button type="button" className="showcase-arrow" aria-label="이전 화면" onClick={() => embla?.scrollPrev()}>
+          <button type="button" className="showcase-arrow" aria-label={t(ui.prevScreen)} onClick={() => embla?.scrollPrev()}>
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="m15 18-6-6 6-6" />
             </svg>
@@ -140,7 +143,7 @@ export default function ShowcaseCarousel({ renderBrand }: { renderBrand: (brand:
                       <div key={shot.src} className="showcase-shot">
                         <img
                           src={asset(shot.src)}
-                          alt={`MakePlay${slide.brand} ${shot.alt}`}
+                          alt={`MakePlay${slide.brand} ${t(shot.alt)}`}
                           data-loupe-key={shot.src}
                           draggable={false}
                           onLoad={measure}
@@ -157,7 +160,7 @@ export default function ShowcaseCarousel({ renderBrand }: { renderBrand: (brand:
             ))}
           </div>
 
-          <button type="button" className="showcase-arrow" aria-label="다음 화면" onClick={() => embla?.scrollNext()}>
+          <button type="button" className="showcase-arrow" aria-label={t(ui.nextScreen)} onClick={() => embla?.scrollNext()}>
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="m9 18 6-6-6-6" />
             </svg>
@@ -170,7 +173,7 @@ export default function ShowcaseCarousel({ renderBrand }: { renderBrand: (brand:
               <button
                 key={slide.shots.map((s) => s.src).join('-')}
                 type="button"
-                aria-label={`${i + 1}번째 슬라이드`}
+                aria-label={t(ui.nthSlide)(i + 1)}
                 aria-current={selected === i}
                 className={selected === i ? 'active' : undefined}
                 onClick={() => embla?.scrollTo(i)}

@@ -3,6 +3,8 @@ import { Outlet, useLocation } from 'react-router-dom'
 import Header from './Header'
 import Footer from './Footer'
 import { prefersReducedMotion, usePageTransition } from './pageTransition'
+import { useLang } from '../i18n/lang'
+import { ui } from '../i18n/ui'
 
 /**
  * 페이지 전환: 원본 Wix 사이트 설정(OutIn, 700ms)과 같이
@@ -11,6 +13,7 @@ import { prefersReducedMotion, usePageTransition } from './pageTransition'
 export default function Layout() {
   const { pathname } = useLocation()
   const { leaving, entering, onLeft } = usePageTransition()
+  const { t } = useLang()
 
   // 모션 줄이기 설정이면 전환 없이 바로 바뀌므로 여기서 맨 위로 올린다
   useEffect(() => {
@@ -31,7 +34,7 @@ export default function Layout() {
   return (
     <div className="app">
       <a className="skip-link" href="#main">
-        메인 콘텐츠로 건너뛰기
+        {t(ui.skipToMain)}
       </a>
       <Header />
       <main

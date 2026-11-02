@@ -3,14 +3,20 @@ import PageHero from '../components/PageHero'
 import PostCard from '../components/PostCard'
 import Markdown from '../components/Markdown'
 import NotFound from './NotFound'
-import { allPosts, categoryLabels, formatDate, getPost } from '../lib/news'
+import { useLang } from '../i18n/lang'
+import { ui } from '../i18n/ui'
+import { categoryLabels, formatDate, getPost, postsFor } from '../lib/news'
 
 export default function NewsPost() {
   const { slug = '' } = useParams()
-  const post = getPost(slug)
+  const { lang, t } = useLang()
+  const post = getPost(slug, lang)
   if (!post) return <NotFound />
 
-  const recent = allPosts.filter((p) => p.slug !== post.slug).slice(0, 3)
+  const recent = postsFor(lang)
+    .filter((p) => p.slug !== post.slug)
+    .slice(0, 3)
+  const koreanOnly = lang === 'en' && post.lang === 'ko'
 
   return (
     <>
@@ -18,24 +24,28 @@ export default function NewsPost() {
       <section className="section section-muted">
         <div className="container">
           <nav className="breadcrumb">
-            <Link to="/news">All Posts</Link>
+            <Link to="/news">{t(ui.allPosts)}</Link>
           </nav>
           <article className="post-detail">
             <div className="post-meta">
-              <span className={`post-badge badge-${post.category}`}>{categoryLabels[post.category]}</span>
-              <span>{formatDate(post.date)}</span>
-              <span>· {post.readingMinutes}분 분량</span>
+              <span className={`post-badge badge-${post.category}`}>{t(categoryLabels[post.category])}</span>
+              {koreanOnly && <span className="post-badge badge-lang">{t(ui.koreanOnly)}</span>}
+              <span>{formatDate(post.date, lang)}</span>
+              <span>· {t(ui.readingTime)(post.readingMinutes)}</span>
             </div>
-            <h1>{post.title}</h1>
-            <Markdown>{post.body}</Markdown>
+            {koreanOnly && <p className="lang-notice">{t(ui.koreanOnlyNotice)}</p>}
+            <div lang={post.lang}>
+              <h1>{post.title}</h1>
+              <Markdown>{post.body}</Markdown>
+            </div>
           </article>
 
           {recent.length > 0 && (
             <div className="recent-posts">
               <div className="section-head">
-                <h2>최근 게시물</h2>
+                <h2>{t(ui.recentPosts)}</h2>
                 <Link to="/news" className="more-link">
-                  전체 보기
+                  {t(ui.viewAll)}
                 </Link>
               </div>
               <div className="tile-grid">

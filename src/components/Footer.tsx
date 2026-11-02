@@ -1,6 +1,8 @@
 import { site } from '../data/site'
+import { useLang } from '../i18n/lang'
 
 export default function Footer() {
+  const { t } = useLang()
   return (
     <footer className="site-footer">
       <div className="container footer-grid">
@@ -20,7 +22,7 @@ export default function Footer() {
         </div>
         <div className="footer-col">
           <h3>Address</h3>
-          <p>{site.address}</p>
+          <p>{t(site.address)}</p>
         </div>
       </div>
     </footer>

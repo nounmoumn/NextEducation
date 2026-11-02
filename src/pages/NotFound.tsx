@@ -1,13 +1,16 @@
 import { Link } from 'react-router-dom'
+import { useLang } from '../i18n/lang'
+import { ui } from '../i18n/ui'
 
 export default function NotFound() {
+  const { t } = useLang()
   return (
     <section className="section">
       <div className="container narrow center">
-        <h1 className="section-title center">페이지를 찾을 수 없습니다</h1>
-        <p className="muted">주소가 바뀌었거나 삭제된 페이지입니다.</p>
+        <h1 className="section-title center">{t(ui.notFoundTitle)}</h1>
+        <p className="muted">{t(ui.notFoundText)}</p>
         <Link to="/" className="btn btn-primary">
-          홈으로
+          {t(ui.goHome)}
         </Link>
       </div>
     </section>

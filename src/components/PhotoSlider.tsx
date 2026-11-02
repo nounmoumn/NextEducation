@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { asset } from '../data/site'
+import { useLang, type L } from '../i18n/lang'
+import { ui } from '../i18n/ui'
 
-type Photo = { src: string; alt: string }
+type Photo = { src: string; alt: L }
 
 type Props = {
   photos: Photo[]
@@ -15,6 +17,7 @@ export default function PhotoSlider({ photos, interval = 5000, className = '' }:
   const [index, setIndex] = useState(0)
   const [paused, setPaused] = useState(false)
   const touchX = useRef<number | null>(null)
+  const { t } = useLang()
   const count = photos.length
 
   const wrap = (n: number) => ((n % count) + count) % count
@@ -33,7 +36,7 @@ export default function PhotoSlider({ photos, interval = 5000, className = '' }:
       className={`photo-slider ${className}`}
       role="region"
       aria-roledescription="carousel"
-      aria-label="사진 슬라이드쇼"
+      aria-label={t(ui.photoSlideshow)}
       tabIndex={0}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
@@ -55,7 +58,7 @@ export default function PhotoSlider({ photos, interval = 5000, className = '' }:
         <img
           key={p.src}
           src={asset(p.src)}
-          alt={p.alt}
+          alt={t(p.alt)}
           className={i === index ? 'active' : undefined}
           aria-hidden={i !== index}
           loading={i === 0 ? 'eager' : 'lazy'}
@@ -64,12 +67,12 @@ export default function PhotoSlider({ photos, interval = 5000, className = '' }:
 
       {count > 1 && (
         <>
-          <button className="slider-arrow prev" aria-label="이전 사진" onClick={() => step(-1)}>
+          <button className="slider-arrow prev" aria-label={t(ui.prevPhoto)} onClick={() => step(-1)}>
             <svg viewBox="0 0 21 41" aria-hidden="true">
               <path d="M20.3 40.8 0 20.5 20.3.2l.7.7L1.3 20.5 21 40.1z" />
             </svg>
           </button>
-          <button className="slider-arrow next" aria-label="다음 사진" onClick={() => step(1)}>
+          <button className="slider-arrow next" aria-label={t(ui.nextPhoto)} onClick={() => step(1)}>
             <svg viewBox="0 0 21 41" aria-hidden="true">
               <path d="M20.3 40.8 0 20.5 20.3.2l.7.7L1.3 20.5 21 40.1z" />
             </svg>
@@ -78,7 +81,7 @@ export default function PhotoSlider({ photos, interval = 5000, className = '' }:
             {photos.map((p, i) => (
               <button
                 key={p.src}
-                aria-label={`${i + 1}번째 사진`}
+                aria-label={t(ui.nthPhoto)(i + 1)}
                 aria-current={i === index}
                 className={i === index ? 'active' : undefined}
                 onClick={() => go(i)}

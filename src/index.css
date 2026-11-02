@@ -160,6 +160,46 @@ h4 {
   border-bottom-color: var(--blue-light);
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 한국어 / 영어 전환 */
+.lang-toggle {
+  display: inline-flex;
+  padding: 2px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+}
+
+.lang-toggle button {
+  border: 0;
+  background: none;
+  border-radius: 999px;
+  padding: 3px 10px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+
+.lang-toggle button:hover {
+  color: var(--navy);
+}
+
+.lang-toggle button[aria-pressed='true'] {
+  background: var(--navy);
+  color: #fff;
+}
+
 .menu-toggle {
   display: none;
   background: none;
@@ -694,6 +734,21 @@ h4 {
 .badge-event {
   background: #fdeee8;
   color: #b4471f;
+}
+
+/* 영어 화면에서 영어판이 없는(한국어 원문) 게시물 표시 */
+.badge-lang {
+  background: #f1f2f5;
+  color: var(--text-soft);
+}
+
+.lang-notice {
+  margin: 14px 0 0;
+  padding: 10px 14px;
+  border-left: 3px solid var(--blue);
+  background: #f3f7fc;
+  color: var(--text-soft);
+  font-size: 14px;
 }
 
 .badge-notice {
