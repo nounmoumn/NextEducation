@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import PageHero from '../components/PageHero'
 import './Hub.css'
 import AccentBar from '../components/AccentBar'
@@ -6,7 +6,6 @@ import ShowcaseCarousel from '../components/ShowcaseCarousel'
 import { asset } from '../data/site'
 import {
   audiences,
-  experiences,
   goals,
   hubLinks,
   hubNotice,
@@ -56,9 +55,6 @@ function ExternalLink({ href, children, className = 'btn btn-primary' }: { href:
 }
 
 export default function Hub() {
-  const [tool, setTool] = useState<'all' | 'MakePlayAI' | 'MakePlaySW'>('all')
-  const visible = experiences.filter((e) => tool === 'all' || e.tool === tool)
-
   return (
     <>
       <PageHero title="미래교육허브" subtitle="AI를 직접 만들고, SW로 즐기면서 배우는 개방형 AI 교육 플랫폼" variant="teal" />
@@ -127,50 +123,6 @@ export default function Hub() {
                 </div>
               </article>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 체험 프로그램 */}
-      <section className="section section-muted">
-        <div className="container">
-          <AccentBar center />
-          <h2 className="section-title center">체험해 보기</h2>
-          <p className="section-lead center">원하는 체험을 골라 단계별 안내를 따라 AI 모델과 서비스를 직접 만들어 보세요.</p>
-          <div className="news-tabs hub-tabs" role="tablist">
-            {(['all', 'MakePlayAI', 'MakePlaySW'] as const).map((t) => (
-              <button key={t} role="tab" aria-selected={tool === t} onClick={() => setTool(t)}>
-                {t === 'all' ? '전체' : t}
-              </button>
-            ))}
-          </div>
-          <div className="exp-grid">
-            {visible.map((e) => (
-              <article key={e.title} className="exp-card">
-                <div className="exp-head">
-                  <span className={`exp-tool ${e.tool === 'MakePlayAI' ? 'is-ai' : 'is-sw'}`}>{e.tool}</span>
-                  <span className="exp-type">{e.type}</span>
-                </div>
-                <h3>{e.title}</h3>
-                <p>{e.text}</p>
-                {e.steps && (
-                  <ol className="exp-steps">
-                    {e.steps.map((s) => (
-                      <li key={s}>{s}</li>
-                    ))}
-                  </ol>
-                )}
-              </article>
-            ))}
-          </div>
-          <div className="btn-row center">
-            <ExternalLink href={hubLinks.tryAI}>MakePlayAI 체험하기 ↗</ExternalLink>
-            <ExternalLink href={hubLinks.trySW} className="btn btn-outline">
-              MakePlaySW 체험하기 ↗
-            </ExternalLink>
-            <ExternalLink href={hubLinks.knowledge} className="btn btn-outline">
-              AI·수학 지식 학습 ↗
-            </ExternalLink>
           </div>
         </div>
       </section>

@@ -6,9 +6,6 @@ export const makeplayUrl = 'https://makeplayai.net/nn/'
 
 export const hubLinks = {
   service: `${makeplayUrl}intro/service`,
-  tryAI: `${makeplayUrl}try/makeplayai`,
-  trySW: `${makeplayUrl}try/makeplaysw`,
-  knowledge: `${makeplayUrl}learn/knowledge`,
   faq: `${makeplayUrl}qa/faq`,
 }
 
@@ -58,71 +55,6 @@ export const tools: Tool[] = [
     text: '모델 학습이나 서비스 구현 중 막히는 부분을 바로 질문할 수 있습니다. 개념 설명부터 오류 해결까지 학습 흐름을 끊지 않고 도움을 받습니다.',
     icon: 'chat',
     topics: ['개념 설명', '모델 학습 도움', '서비스 구현 도움', '오류 해결'],
-  },
-]
-
-export type Experience = {
-  tool: 'MakePlayAI' | 'MakePlaySW'
-  type: string
-  title: string
-  text: string
-  steps?: string[]
-}
-
-export const experiences: Experience[] = [
-  {
-    tool: 'MakePlayAI',
-    type: '지도 학습 · 이미지',
-    title: '고양이/강아지 사진 분류',
-    text: '클래스별로 사진을 올려 학습시키고 새 사진으로 예측해 봅니다.',
-    steps: ['데이터셋 불러오기', '학습', '모델 테스트'],
-  },
-  {
-    tool: 'MakePlayAI',
-    type: '지도 학습 · 웹캠',
-    title: '손 모양(가위바위보) 분류',
-    text: '웹캠으로 손 제스처를 촬영해 데이터를 만들고 실시간으로 분류 결과를 확인합니다.',
-    steps: ['클래스 추가', '웹캠 촬영', '학습', '실시간 예측'],
-  },
-  {
-    tool: 'MakePlayAI',
-    type: '지도 학습 · 단층 신경망',
-    title: '키·몸무게로 남녀 분류',
-    text: '두 가지 속성으로 경계선을 찾는 단층 신경망을 학습하고 정확도를 높여 봅니다.',
-    steps: ['데이터셋 불러오기', '학습', '정확도 확인·재학습', '모델 테스트'],
-  },
-  {
-    tool: 'MakePlayAI',
-    type: '지도 학습 · 다층 신경망',
-    title: '동물 3종 분류',
-    text: '은닉층이 여러 개인 신경망으로 고양이·오리·토끼를 구분하며 파라미터를 조정합니다.',
-    steps: ['데이터셋 불러오기', '학습', '정확도 확인·재학습', '모델 테스트'],
-  },
-  {
-    tool: 'MakePlayAI',
-    type: '비지도 학습 · K-means',
-    title: '동물 사진 군집화',
-    text: '정답 없이 비슷한 사진끼리 K개의 묶음으로 나누고, 새 사진이 어느 묶음인지 확인합니다.',
-    steps: ['데이터셋 불러오기', '학습', '군집 결과 확인·재학습', '모델 테스트'],
-  },
-  {
-    tool: 'MakePlayAI',
-    type: '비지도 학습 · K-means',
-    title: '동물 특성표 군집화',
-    text: '표 형태의 동물 특성 데이터를 K값을 바꿔 가며 군집화합니다.',
-    steps: ['데이터셋 불러오기', '학습', '군집 결과 확인·재학습', '모델 테스트'],
-  },
-  {
-    tool: 'MakePlaySW',
-    type: 'AI 모델 연결',
-    title: '채팅 앱 만들기',
-    text: '텍스트 임베딩 모델을 연결해 대화형 채팅 앱 화면을 구성합니다.',
-  },
-  {
-    tool: 'MakePlaySW',
-    type: 'DB 연결',
-    title: '회원가입/로그인 만들기',
-    text: '회원가입·로그인 화면을 만들고 DB와 연결해 인증 흐름을 완성합니다.',
   },
 ]
 
